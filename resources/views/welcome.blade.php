@@ -19,10 +19,10 @@
                 <nav class="flex items-center justify-end gap-4">
                     @auth
                         <a
-                            href="{{ url('/dashboard') }}"
+                            href="{{ route('aufgabes.index') }}"
                             class="text-indigo-600 hover:text-indigo-800"
                         >
-                            Dashboard
+                            Noten
                         </a>
                     @else
                     <div class="absolut top-0  right-0 p-6">
