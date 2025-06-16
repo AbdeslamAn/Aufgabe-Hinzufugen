@@ -15,9 +15,9 @@ class AufgabeController extends Controller
     {
         $user_id = Auth::id();
         $aufgabes = Aufgabe::where('user_id', $user_id)->latest('updated_at')->paginate(5);
-        
+
         return view('noten.index')->with('aufgabes',$aufgabes);
-        
+
     }
 
     /**
@@ -25,7 +25,7 @@ class AufgabeController extends Controller
      */
     public function create()
     {
-        //
+        return view('noten.create');
     }
 
     /**
@@ -33,7 +33,17 @@ class AufgabeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:120',
+            'text' => 'required'
+         ]);
+
+         $notiz = new Aufgabe([
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'text' => $request->text
+         ]);
+         $notiz->save();
     }
 
     /**
