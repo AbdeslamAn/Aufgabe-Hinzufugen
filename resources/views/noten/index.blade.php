@@ -7,6 +7,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+
+            <x-alert-success>{{ session('success') }}</x-alert-success>
+
             <x-link-button href="{{ route('aufgabes.create')}}">
                 + Neu Note
             </x-link-button>
