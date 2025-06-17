@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Aufgabe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
 class AufgabeController extends Controller
@@ -40,6 +41,7 @@ class AufgabeController extends Controller
 
          $notiz = new Aufgabe([
             'user_id' => Auth::id(),
+            'uuid' => Str::uuid(),
             'title' => $request->title,
             'text' => $request->text
          ]);
@@ -51,7 +53,12 @@ class AufgabeController extends Controller
      */
     public function show(Aufgabe $aufgabe)
     {
-        //
+        if($aufgabe->user_id !== Auth::id())
+        {
+            abort(403);
+        }
+
+        return view('noten.show', ['aufgabe' =>  $aufgabe]);
     }
 
     /**
