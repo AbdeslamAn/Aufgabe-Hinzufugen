@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('aufgabes', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
             $table->string('title');
             $table->LongText('text');
             $table->foreignIdFor(User::class);
