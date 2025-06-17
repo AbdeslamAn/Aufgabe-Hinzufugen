@@ -97,7 +97,8 @@ class AufgabeController extends Controller
             'text' => $request->text
          ]);
 
-         return to_route('aufgabes.show', $aufgabe);
+         return to_route('aufgabes.show', $aufgabe)
+                ->with('success', 'Änderung gespeichert');
     }
 
     /**
