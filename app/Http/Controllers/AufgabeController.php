@@ -46,6 +46,9 @@ class AufgabeController extends Controller
             'text' => $request->text
          ]);
          $notiz->save();
+
+         return to_route('aufgabes.show', $notiz);
+
     }
 
     /**
@@ -66,7 +69,12 @@ class AufgabeController extends Controller
      */
     public function edit(Aufgabe $aufgabe)
     {
-        //
+        if($aufgabe->user_id !== Auth::id())
+        {
+            abort(403);
+        }
+
+        return view('noten.edit', ['aufgabe' =>  $aufgabe]);
     }
 
     /**
@@ -74,7 +82,22 @@ class AufgabeController extends Controller
      */
     public function update(Request $request, Aufgabe $aufgabe)
     {
-        //
+        if($aufgabe->user_id !== Auth::id())
+        {
+            abort(403);
+        }
+
+         $request->validate([
+            'title' => 'required|max:120',
+            'text' => 'required'
+         ]);
+
+         $aufgabe->update([
+            'title' => $request->title,
+            'text' => $request->text
+         ]);
+
+         return to_route('aufgabes.show', $aufgabe);
     }
 
     /**
