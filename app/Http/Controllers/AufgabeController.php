@@ -105,6 +105,13 @@ class AufgabeController extends Controller
      */
     public function destroy(Aufgabe $aufgabe)
     {
-        //
+        if($aufgabe->user_id !== Auth::id())
+        {
+            abort(403);
+        }
+
+        $aufgabe->delete();
+
+        return to_route('aufgabes.index');
     }
 }
