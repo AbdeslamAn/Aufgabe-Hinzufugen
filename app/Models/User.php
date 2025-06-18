@@ -45,4 +45,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+
+    public function aufgabes()
+    {
+        return $this->hasMany(Aufgabe::class);
+    }
 }
