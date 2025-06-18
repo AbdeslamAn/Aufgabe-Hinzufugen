@@ -14,8 +14,8 @@ class AufgabeController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
-        $aufgabes = Aufgabe::where('user_id', $user_id)->latest('updated_at')->paginate(5);
+        
+        $aufgabes = Aufgabe::whereBelongsto(Auth::user())->latest('updated_at')->paginate(5);
 
         return view('noten.index')->with('aufgabes',$aufgabes);
 
@@ -39,12 +39,12 @@ class AufgabeController extends Controller
             'text' => 'required'
          ]);
 
-         $notiz = new Aufgabe([
-            'user_id' => Auth::id(),
+         $notiz = auth()->user()->aufgabes()->create([
             'uuid' => Str::uuid(),
             'title' => $request->title,
-            'text' => $request->text
+            'text' => $request->text,
          ]);
+
          $notiz->save();
 
          return to_route('aufgabes.show', $notiz);
@@ -56,7 +56,7 @@ class AufgabeController extends Controller
      */
     public function show(Aufgabe $aufgabe)
     {
-        if($aufgabe->user_id !== Auth::id())
+         if(!$aufgabe->user->is(Auth::id()))
         {
             abort(403);
         }
@@ -69,7 +69,7 @@ class AufgabeController extends Controller
      */
     public function edit(Aufgabe $aufgabe)
     {
-        if($aufgabe->user_id !== Auth::id())
+        if(!$aufgabe->user->is(Auth::id()))
         {
             abort(403);
         }
@@ -82,7 +82,7 @@ class AufgabeController extends Controller
      */
     public function update(Request $request, Aufgabe $aufgabe)
     {
-        if($aufgabe->user_id !== Auth::id())
+         if(!$aufgabe->user->is(Auth::id()))
         {
             abort(403);
         }
@@ -106,7 +106,7 @@ class AufgabeController extends Controller
      */
     public function destroy(Aufgabe $aufgabe)
     {
-        if($aufgabe->user_id !== Auth::id())
+        if(!$aufgabe->user->is(Auth::id()))
         {
             abort(403);
         }
