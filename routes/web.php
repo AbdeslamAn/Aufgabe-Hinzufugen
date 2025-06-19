@@ -22,3 +22,7 @@ require __DIR__.'/auth.php';
 Route::resource('aufgabes', AufgabeController::class)->middleware('auth');
 
 Route::get('/trashed', [TrashedNoteController::class, 'index'])->middleware('auth')->name('trashed.index');
+
+Route::get('/trashed/{aufgabe}', [TrashedNoteController::class, 'show'])->withTrashed()->middleware('auth')->name('trashed.show');
+
+Route::put('/trashed/{aufgabe}', [TrashedNoteController::class, 'update'])->withTrashed()->middleware('auth')->name('trashed.update');
