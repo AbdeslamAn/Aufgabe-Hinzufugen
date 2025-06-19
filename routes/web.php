@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AufgabeController;
+use App\Http\Controllers\TrashedNoteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,3 +20,5 @@ require __DIR__.'/auth.php';
 
 
 Route::resource('aufgabes', AufgabeController::class)->middleware('auth');
+
+Route::get('/trashed', [TrashedNoteController::class, 'index'])->middleware('auth')->name('trashed.index');
