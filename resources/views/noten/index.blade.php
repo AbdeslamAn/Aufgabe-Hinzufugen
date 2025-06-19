@@ -18,9 +18,15 @@
 
             @forelse ($aufgabes as $aufgabe)
             <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg">
-
                 <h2 class="font-bold  text-2xl text-indigo-600">
-                   <a href="{{route('aufgabes.show', $aufgabe)}}" class="hover:underline">{{ $aufgabe->title }}</a>
+                  <a
+                    @if(request()->routeIs('aufgabes.index'))
+                    href="{{route('aufgabes.show', $aufgabe)}}"
+                    @else
+                    href="{{route('trashed.show', $aufgabe)}}"
+                    @endif
+                    class="hover:underline">{{ $aufgabe->title }}
+                  </a>
                 </h2>
                 <p class="mt-2 ">{{Str::limit($aufgabe->text, 200, '...') }}</p>
                 <span class="block mt-4 text-sm opacity-70">{{ $aufgabe->updated_at->diffForHumans()}}</span>
