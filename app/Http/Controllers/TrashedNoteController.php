@@ -26,4 +26,18 @@ class TrashedNoteController extends Controller
 
         return view('noten.show')->with('aufgabe', $aufgabe);
     }
+
+    public function update(Aufgabe $aufgabe)
+    {
+        if(!$aufgabe->user->is(Auth::user()))
+        {
+            abort(403);
+        }
+
+        $aufgabe->restore();
+
+        return to_route('noten.show', $aufgabe)
+            ->with('success', 'Notiz wiederherstellen');
+
+    }
 }
