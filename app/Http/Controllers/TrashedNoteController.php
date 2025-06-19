@@ -9,11 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class TrashedNoteController extends Controller
 {
-    public function index() 
+    public function index()
     {
         $aufgabes = Aufgabe::whereBelongsTo(Auth::user())->onlyTrashed()->latest('updated_at')->paginate(5);
 
         return view('noten.index')->with('aufgabes',$aufgabes);
 
+    }
+
+    public function show(Aufgabe $aufgabe)
+    {
+         if(!$aufgabe->user->is(Auth::user()))
+        {
+            abort(403);
+        }
+
+        return view('noten.show')->with('aufgabe', $aufgabe);
     }
 }
