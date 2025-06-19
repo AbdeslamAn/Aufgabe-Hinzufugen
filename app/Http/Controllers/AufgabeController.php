@@ -114,6 +114,6 @@ class AufgabeController extends Controller
         $aufgabe->delete();
 
         return to_route('aufgabes.index')
-                ->with('success', 'Notiz gelöscht');
+                ->with('success', 'Notiz In den Papierkorb');
     }
 }
