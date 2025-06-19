@@ -2,9 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aufgabe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class TrashedNoteController extends Controller
 {
-    //
+    public function index() 
+    {
+        $aufgabes = Aufgabe::whereBelongsTo(Auth::user())->onlyTrashed()->latest('updated_at')->paginate(5);
+
+        return view('noten.index')->with('aufgabes',$aufgabes);
+
+    }
 }
