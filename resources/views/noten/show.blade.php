@@ -12,9 +12,7 @@
 
 
             <div class="flex gap-6">
-                <p class="opacity-70"><strong>Erstelen : </strong> {{$aufgabe->created_at->diffForHumans()}}</p>
-                <p class="opacity-70"><strong>Letzte ändern :</strong> {{$aufgabe->updated_at->diffForHumans()}}</p>
-
+                
                 <x-link-button href="{{ route('aufgabes.edit', $aufgabe) }}" class="ml-auto">Notiz bearbeiten</x-link-button>
                 <form action="{{ route('aufgabes.destroy', $aufgabe) }}" method="POST">
                     @method('delete')
@@ -31,7 +29,16 @@
                 </h2>
                 <p class="mt-4 whitespace-pre-wrap">{{ $aufgabe->text }}</p>
             </div>
-
+            <div class="max-w-20xl">
+                <table>
+                    <tr>
+                        <td><p class="opacity-70 p-0"><strong>Erstelen : </strong> {{$aufgabe->created_at->diffForHumans()}}</p></td>
+                        <td><p class="opacity-70 p-6"><strong>Letzte ändern :</strong> {{$aufgabe->updated_at->diffForHumans()}}</p></td>
+                    </tr>
+                </table>
+            
+            
+            </div>
 
         </div>
     </div>
