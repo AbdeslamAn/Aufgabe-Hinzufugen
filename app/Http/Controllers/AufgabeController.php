@@ -69,7 +69,7 @@ class AufgabeController extends Controller
      */
     public function edit(Aufgabe $aufgabe)
     {
-        if(!$aufgabe->user->is(Auth::id()))
+        if(!$aufgabe->user->is(Auth::user()))
         {
             abort(403);
         }
@@ -82,7 +82,7 @@ class AufgabeController extends Controller
      */
     public function update(Request $request, Aufgabe $aufgabe)
     {
-         if(!$aufgabe->user->is(Auth::id()))
+         if(!$aufgabe->user->is(Auth::user()))
         {
             abort(403);
         }
