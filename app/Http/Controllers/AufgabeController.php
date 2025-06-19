@@ -14,8 +14,8 @@ class AufgabeController extends Controller
      */
     public function index()
     {
-        
-        $aufgabes = Aufgabe::whereBelongsto(Auth::user())->latest('updated_at')->paginate(5);
+
+        $aufgabes = Aufgabe::whereBelongsTo(Auth::user())->latest('updated_at')->paginate(5);
 
         return view('noten.index')->with('aufgabes',$aufgabes);
 
@@ -45,7 +45,7 @@ class AufgabeController extends Controller
             'text' => $request->text,
          ]);
 
-         $notiz->save();
+
 
          return to_route('aufgabes.show', $notiz);
 
@@ -56,7 +56,7 @@ class AufgabeController extends Controller
      */
     public function show(Aufgabe $aufgabe)
     {
-         if(!$aufgabe->user->is(Auth::id()))
+         if(!$aufgabe->user->is(Auth::user()))
         {
             abort(403);
         }
@@ -106,7 +106,7 @@ class AufgabeController extends Controller
      */
     public function destroy(Aufgabe $aufgabe)
     {
-        if(!$aufgabe->user->is(Auth::id()))
+        if(!$aufgabe->user->is(Auth::user()))
         {
             abort(403);
         }
