@@ -45,13 +45,13 @@
                     <x-primary-button>Notiz wiederherstellen</x-primary-button>
                 </form>
 
-                {{-- <form action="{{ route('aufgabes.destroy', $aufgabe) }}" method="POST">
+                <form action="{{ route('trashed.destroy', $aufgabe) }}" method="POST">
                     @method('delete')
                     @csrf
                     <x-primary-button class="bg-red-500 hover:bg-red-600 focus:bg-red-600"
-                    onclick="return confirm('Sind Sie sicher, dass Sie diese Notiz „{{ $aufgabe->title }}“ In Papierkorb möchten?')"
-                    >In Papierkorb</x-primary-button>
-                </form> --}}
+                    onclick="return confirm('Sind Sie sicher, dass Sie diese Notiz „{{ $aufgabe->title }}“ endgültig löschen möchten?')"
+                    >Endgültig löschen </x-primary-button>
+                </form>
             </div>
             <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg">
 
