@@ -40,4 +40,17 @@ class TrashedNoteController extends Controller
             ->with('success', 'Notiz wiederherstellen');
 
     }
+
+    public function destroy(Aufgabe $aufgabe)
+    {
+        if(!$aufgabe->user->is(Auth::user()))
+        {
+            abort(403);
+        }
+
+        $aufgabe->forceDelete();
+
+        return to_route('trashed.index')
+            ->with('success', 'Notiz endgültig löschen');
+    }
 }
