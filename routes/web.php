@@ -37,8 +37,8 @@ Route::delete('/trashed/{aufgabe}', [TrashedNoteController::class, 'destroy'])->
 
 Route::prefix('/trashed')->name('trashed.')->middleware('auth')->group(function ()
 {
-    Route::get('/', [TrashedNoteController::class, 'index'])->name('trashed.index');
-    Route::get('/{aufgabe}', [TrashedNoteController::class, 'show'])->withTrashed()->name('.show');
-    Route::put('/{aufgabe}', [TrashedNoteController::class, 'update'])->withTrashed()->name('.update');
-    Route::delete('/{aufgabe}', [TrashedNoteController::class, 'destroy'])->withTrashed()->name('.destroy');
+    Route::get('/', [TrashedNoteController::class, 'index'])->name('index');
+    Route::get('/{aufgabe}', [TrashedNoteController::class, 'show'])->withTrashed()->name('show');
+    Route::put('/{aufgabe}', [TrashedNoteController::class, 'update'])->withTrashed()->name('update');
+    Route::delete('/{aufgabe}', [TrashedNoteController::class, 'destroy'])->withTrashed()->name('destroy');
 });
