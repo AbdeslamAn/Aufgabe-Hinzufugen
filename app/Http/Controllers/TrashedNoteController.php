@@ -36,7 +36,7 @@ class TrashedNoteController extends Controller
 
         $aufgabe->restore();
 
-        return to_route('noten.show', $aufgabe)
+        return to_route('aufgabes.show', $aufgabe)
             ->with('success', 'Notiz wiederherstellen');
 
     }
