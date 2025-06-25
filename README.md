@@ -48,9 +48,7 @@ php artisan serve
 Nur registrierte Benutzer können Notizen erstellen und verwalten.  
 Laravel Breeze wurde für die Authentifizierung verwendet.
 
-## 📝 Lizenz
 
-Dieses Projekt ist unter der MIT-Lizenz veröffentlicht.
 
 
 
