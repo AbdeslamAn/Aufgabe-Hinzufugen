@@ -48,6 +48,24 @@ php artisan serve
 Nur registrierte Benutzer können Notizen erstellen und verwalten.  
 Laravel Breeze wurde für die Authentifizierung verwendet.
 
+📂 Projektstruktur
+app/Models/Aufgabe.php – Modell für Notizen
+
+app/Http/Controllers/AufgabeController.php – Controller für alle Aktionen
+
+resources/views/noten/ – Blade-Views für Anzeige und Formulare
+
+📌 Technologien
+Laravel 12 – PHP-Framework für Webentwicklung
+
+PHP 8.2 – Programmiersprache für die Backend-Logik
+
+Tailwind CSS – modernes CSS-Framework für das Design
+
+Breeze – einfache Authentifizierungslösung für Laravel
+
+MySQL – relationale Datenbank zur Speicherung der Notizen
+
 
 
 
